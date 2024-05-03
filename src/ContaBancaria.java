@@ -51,17 +51,40 @@ public class ContaBancaria {
             System.out.println("3. Verificar Saldo");
             System.out.println("4. Sair");
 
-            int opcao = scanner.nextInt();
+            int opcao;
+            try {
+                opcao = scanner.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número.");
+                scanner.nextLine(); // Consumir a entrada inválida
+                continue;
+            }
 
             switch (opcao) {
                 case 1:
                     System.out.println("Digite o valor a ser depositado:");
-                    double valorDeposito = scanner.nextDouble();
+                    double valorDeposito;
+                    try {
+                        valorDeposito = scanner.nextDouble();
+                    } catch (java.util.InputMismatchException e) {
+                        System.out.println("Valor inválido. Por favor, insira um número.");
+                        scanner.nextLine(); // Consumir a entrada inválida
+                        continue;
+                    }
+                    scanner.nextLine(); // Consumir a quebra de linha pendente
                     conta.depositar(valorDeposito);
                     break;
                 case 2:
                     System.out.println("Digite o valor a ser sacado:");
-                    double valorSaque = scanner.nextDouble();
+                    double valorSaque;
+                    try {
+                        valorSaque = scanner.nextDouble();
+                    } catch (java.util.InputMismatchException e) {
+                        System.out.println("Valor inválido. Por favor, insira um número.");
+                        scanner.nextLine(); // Consumir a entrada inválida
+                        continue;
+                    }
+                    scanner.nextLine(); // Consumir a quebra de linha pendente
                     conta.sacar(valorSaque);
                     break;
                 case 3:
